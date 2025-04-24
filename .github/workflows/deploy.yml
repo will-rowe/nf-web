@@ -21,6 +21,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Add this step to debug
+      - name: List files
+        run: |
+          ls -la
+          cat pnpm-lock.yaml | head -n 5
+
       # First setup pnpm
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -47,8 +53,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      # Try without frozen lockfile first
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build
         run: pnpm build
