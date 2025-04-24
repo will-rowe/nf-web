@@ -1,0 +1,27 @@
+[tools]
+node = "20.17.0"
+pnpm = "9.13.2"
+
+[env]
+NODE_VERSION = "20.17.0"
+PNPM_VERSION = "9.13.2"
+
+[tasks]
+setup = ["pnpm install"]
+
+dev = ["pnpm dev"]
+
+build = ["pnpm build"]
+
+preview = ["pnpm preview"]
+
+deploy = ["pnpm build", "pnpm preview"]
+
+lint = ["pnpm lint"]
+
+[settings]
+verbose = false
+asdf_compat = false
+jobs = 4
+raw = false
+yes = false
