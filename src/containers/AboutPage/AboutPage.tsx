@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
+import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft } from "lucide-react";
 
@@ -26,6 +26,7 @@ const AboutPage = () => {
       <CardContent>
         <p>{t("aboutPage.content")}</p>
       </CardContent>
+      <Separator />
       <CardFooter>
         <Button variant="ghost" size="lg" asChild>
           <Link to="/">

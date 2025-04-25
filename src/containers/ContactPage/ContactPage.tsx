@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { Separator } from "@/components/ui/separator";
 
 const formId = import.meta.env.VITE_FORM_ID;
 
@@ -53,6 +54,7 @@ const ContactPage = () => {
         });
       }
     } catch (err) {
+      console.error(err);
       toast.error(t("components.toast.networkError"), {
         description: t("components.toast.networkErrorDescription"),
       });
@@ -72,6 +74,7 @@ const ContactPage = () => {
       <CardContent>
         <ContactForm onSubmit={handleSubmit} loading={loading} />
       </CardContent>
+      <Separator />
       <CardFooter>
         <Button variant="ghost" size="lg" asChild>
           <Link to="/">{t("navigation.back")}</Link>

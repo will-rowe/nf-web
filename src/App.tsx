@@ -13,7 +13,7 @@ function App() {
     <Router>
       <div className="relative w-full h-screen overflow-hidden">
         {/* Background */}
-        <BackgroundGraphic className="absolute inset-0 z-0 stroke-stone-200 dark:stroke-stone-50 fill-stone-100 dark:fill-stone-50" />
+        <BackgroundGraphic className="absolute inset-0 z-0 stroke-stone-200 dark:stroke-stone-50 fill-stone-200 dark:fill-stone-50" />
 
         {/* Header */}
         <Header showOnRoot={false} />

@@ -1,6 +1,5 @@
 @import "tailwindcss";
-@import "@fontsource/spectral/400.css";
-@import "@fontsource/spectral/700.css";
+@import "@fontsource/audiowide/400.css";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -41,7 +40,7 @@
     --highlight1: oklch(0.67 0.1108 203.31);
     --highlight2: oklch(0.64 0.2089 29.18);
     --highlight3: oklch(0.8 0.167856 76.6724);
-    --font-sans: 'Spectral', system-ui, sans-serif;
+    --font-sans: 'Audiowide', system-ui, sans-serif;
     --font-family: var(--font-sans);
 }
 
@@ -80,7 +79,7 @@
     --highlight1: oklch(0.67 0.1108 203.31);
     --highlight2: oklch(0.64 0.2089 29.18);
     --highlight3: oklch(0.8 0.167856 76.6724);
-    --font-sans: 'Spectral', system-ui, sans-serif;
+    --font-sans: 'Audiowide', system-ui, sans-serif;
     --font-family: var(--font-sans);
 }
 

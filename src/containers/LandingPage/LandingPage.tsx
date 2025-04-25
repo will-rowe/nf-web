@@ -26,14 +26,13 @@ const LandingPage = () => {
         />
       </div>
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">
+        <CardTitle className="text-4xl font-bold">
           {t("landingPage.title")}
         </CardTitle>
         <CardDescription>{t("landingPage.description")}</CardDescription>
       </CardHeader>
-      <CardContent>
-        <Separator />
-      </CardContent>
+      <CardContent></CardContent>
+      <Separator />
       <CardFooter className="flex justify-center gap-4 sm:flex-row gap-4 sm:gap-8">
         <Button variant="ghost" size="lg" asChild>
           <Link to="/about">{t("navigation.about")}</Link>

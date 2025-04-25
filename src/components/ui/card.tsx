@@ -14,7 +14,7 @@ const cardVariants = cva(
       },
       size: {
         default: "",
-        large: "w-full max-w-4xl",
+        large: "min-h-[10vh] max-h-[75vh] w-full sm:w-3/4",
       },
     },
     defaultVariants: {

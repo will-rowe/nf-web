@@ -11,6 +11,9 @@ importers:
       '@fontsource/alegreya':
         specifier: ^5.2.5
         version: 5.2.5
+      '@fontsource/audiowide':
+        specifier: ^5.2.5
+        version: 5.2.5
       '@fontsource/nunito':
         specifier: ^5.2.5
         version: 5.2.5
@@ -880,6 +883,9 @@ packages:
 
   '@fontsource/alegreya@5.2.5':
     resolution: {integrity: sha512-Gl5VZCFHNrZsrNBws2imyZZEwp5L8rwdlfykEKDlIV3Gnn+YcRKi5M2lZDkfNlKB+NzE0EUhXqELrZlooiKf1Q==}
+
+  '@fontsource/audiowide@5.2.5':
+    resolution: {integrity: sha512-9AERGiy56j1KiZ9SxsiPkXWE80oiQ/Nak+XCaOKlg6bZYn+xrKadibyf6KZUnAju/i9KFDWPQxeccZUOmVNgDQ==}
 
   '@fontsource/nunito@5.2.5':
     resolution: {integrity: sha512-KeB3US1uHB3GpVo0FewYRtHpG+UZJiRqu4xzvCRkZ8ceJPTx7lf0ZsKKWpvXCMALUJSeaD/ol/BSvLaqli5ZRQ==}
@@ -3151,6 +3157,8 @@ snapshots:
       levn: 0.4.1
 
   '@fontsource/alegreya@5.2.5': {}
+
+  '@fontsource/audiowide@5.2.5': {}
 
   '@fontsource/nunito@5.2.5': {}
 
