@@ -25,7 +25,7 @@ const LandingPage = () => {
           highlight3="var(--highlight3)"
         />
       </div>
-      <CardHeader>
+      <CardHeader className="text-center items-center">
         <CardTitle className="text-4xl font-bold">
           {t("landingPage.title")}
         </CardTitle>

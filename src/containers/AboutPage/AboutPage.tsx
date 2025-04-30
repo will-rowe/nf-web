@@ -22,6 +22,7 @@ const AboutPage = () => {
           {t("aboutPage.title")}
         </CardTitle>
         <CardDescription>{t("aboutPage.description")}</CardDescription>
+        <Separator />
       </CardHeader>
       <CardContent>
         <p>{t("aboutPage.content")}</p>

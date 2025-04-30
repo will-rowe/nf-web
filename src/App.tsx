@@ -11,32 +11,32 @@ import ContactPage from "./containers/ContactPage/ContactPage";
 function App() {
   return (
     <Router>
-      <div className="relative w-full h-screen overflow-hidden">
+      <div className="relative flex flex-col min-h-screen w-full">
         {/* Background */}
         <BackgroundGraphic className="absolute inset-0 z-0 stroke-stone-200 dark:stroke-stone-50 fill-stone-200 dark:fill-stone-50" />
 
-        {/* Header */}
+        {/* Header (absolute) */}
         <Header showOnRoot={false} />
-
-        {/* Theme toggle */}
         <header className="absolute top-4 right-4 z-50">
           <ThemeToggle />
         </header>
 
+        {/* Main content */}
+        <main className="relative z-20 flex-1 flex flex-col items-center justify-center pt-24 pb-24">
+          <div className="w-full max-w-5xl px-4 sm:px-6 md:px-8">
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/music" element={<MusicPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+            </Routes>
+          </div>
+        </main>
+
         {/* Footer */}
         <Footer />
 
-        {/* Main content */}
-        <div className="relative z-20 flex flex-col items-center justify-center text-center h-full px-4">
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/music" element={<MusicPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-          </Routes>
-        </div>
-
-        {/* Toast provider */}
+        {/* Toast notifications */}
         <Toaster />
 
         {/* Cookie consent */}

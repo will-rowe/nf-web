@@ -70,6 +70,7 @@ const ContactPage = () => {
           {t("contactPage.title")}
         </CardTitle>
         <CardDescription>{t("contactPage.description")}</CardDescription>
+        <Separator />
       </CardHeader>
       <CardContent>
         <ContactForm onSubmit={handleSubmit} loading={loading} />

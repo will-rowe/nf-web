@@ -10,7 +10,9 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Calendar } from "lucide-react";
+
+const spotifyAlbumId = import.meta.env.VITE_SPOTIFY_ALBUM_ID;
 
 const MusicPage = () => {
   const { t } = useTranslation();
@@ -22,6 +24,21 @@ const MusicPage = () => {
           {t("musicPage.title")}
         </CardTitle>
         <CardDescription>{t("musicPage.description")}</CardDescription>
+        <CardDescription className="flex items-center gap-2">
+          <Calendar className="h-4 w-4 text-muted-foreground" />
+          <span>
+            Released on{" "}
+            {new Date(t("musicPage.releaseDate")).toLocaleDateString(
+              undefined,
+              {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }
+            )}
+          </span>
+        </CardDescription>
+        <Separator />
       </CardHeader>
 
       <CardContent className="flex-1 overflow-y-auto">
@@ -34,7 +51,7 @@ const MusicPage = () => {
           />
 
           {/* Album Content */}
-          <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+          <div className="space-y-4 text-sm leading-relaxed">
             {Array.from({ length: 5 }).map((_, i) => {
               const key = `musicPage.content.paragraph${i + 1}`;
               return (
@@ -45,18 +62,16 @@ const MusicPage = () => {
             })}
           </div>
 
-          {/* Clear float before Spotify embed */}
-          <div className="clear-both pt-8">
-            <div className="max-w-md mx-auto">
-              <iframe
-                style={{ borderRadius: "12px" }}
-                src="https://open.spotify.com/embed/album/your-album-id-here"
-                width="100%"
-                height="152"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-              ></iframe>
-            </div>
+          {/* Clear float and Spotify embed container */}
+          <div className="clear-both pt-8 w-full">
+            <iframe
+              src={`https://open.spotify.com/embed/album/${spotifyAlbumId}`}
+              width="100%"
+              height="380"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              className="rounded-xl shadow-lg min-h-[380px]"
+            ></iframe>
           </div>
         </div>
       </CardContent>
