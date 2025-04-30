@@ -23,15 +23,8 @@ export const initGoogleAnalytics = () => {
   
   // Set up the gtag function
   window.gtag = gtag;
-  
-  // Configure gtag before loading the script
-  gtag('js', new Date());
-  gtag('config', measurementId, {
-    debug_mode: true,
-    send_page_view: true
-  });
 
-  // Create the script element for gtag.js
+  // Create and load the script first
   const script = document.createElement('script');
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
@@ -39,6 +32,14 @@ export const initGoogleAnalytics = () => {
   // Add error handling for script loading
   script.onerror = () => {
     console.error('Failed to load Google Analytics script');
+  };
+
+  // Configure gtag after script loads
+  script.onload = () => {
+    gtag('js', new Date());
+    gtag('config', measurementId, {
+      send_page_view: true
+    });
   };
   
   // Append the script to the document

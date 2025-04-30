@@ -62,6 +62,7 @@ jobs:
         env:
           VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
           VITE_FORM_ID: ${{ secrets.VITE_FORM_ID }}
+          VITE_SPOTIFY_ALBUM_ID: ${{ secrets.VITE_SPOTIFY_ALBUM_ID }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
