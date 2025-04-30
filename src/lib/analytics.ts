@@ -24,7 +24,14 @@ export const initGoogleAnalytics = () => {
   // Set up the gtag function
   window.gtag = gtag;
 
-  // Create and load the script first
+  // Configure gtag before loading the script
+  gtag('js', new Date());
+  gtag('config', measurementId, {
+    send_page_view: true,
+    debug_mode: false
+  });
+
+  // Create and load the script
   const script = document.createElement('script');
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
@@ -33,20 +40,19 @@ export const initGoogleAnalytics = () => {
   script.onerror = () => {
     console.error('Failed to load Google Analytics script');
   };
-
-  // Configure gtag after script loads
-  script.onload = () => {
-    gtag('js', new Date());
-    gtag('config', measurementId, {
-      send_page_view: true
-    });
-  };
   
   // Append the script to the document
   document.head.appendChild(script);
 
   // Debug logging
   console.log('Google Analytics initialized with ID:', measurementId);
+
+  // Track initial page view
+  gtag('event', 'page_view', {
+    page_title: document.title,
+    page_location: window.location.href,
+    page_path: window.location.pathname
+  });
 };
 
 // Spotify embed initialization
