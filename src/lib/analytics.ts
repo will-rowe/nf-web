@@ -6,8 +6,6 @@ declare global {
   }
 }
 
-const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
-
 export const initGoogleAnalytics = () => {
   // SSR safeguard
   if (typeof window === "undefined" || typeof document === "undefined") {
@@ -21,43 +19,40 @@ export const initGoogleAnalytics = () => {
     return;
   }
 
-  // Prevent duplicate script tag
-  const existingScript = document.querySelector(
-    `script[src^="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"]`
+  // Find all consent-blocked GA scripts
+  const consentScripts = document.querySelectorAll<HTMLScriptElement>(
+    'script[type="text/plain"][data-cookie-consent="analytics"]'
   );
-  if (existingScript) {
-    console.warn("GA script already present in DOM, not adding again");
+
+  if (consentScripts.length === 0) {
+    console.warn("No consent-tagged GA scripts found — nothing to activate");
     return;
   }
 
-  // Create GA script
-  const script = document.createElement("script");
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-  script.async = true;
+  console.log("Activating GA scripts after user consent...");
 
-  script.onload = () => {
-    // Setup dataLayer and gtag
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function (...args: unknown[]) {
-      window.dataLayer.push(args);
+  consentScripts.forEach((el) => {
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+
+    if (el.src) {
+      script.src = el.src;
+      script.async = el.async;
+    } else {
+      script.textContent = el.textContent;
+    }
+
+    script.onerror = () => {
+      console.error("Failed to load Google Analytics script from consent tag");
     };
 
-    // Init gtag
-    window.gtag("js", new Date());
-    window.gtag("config", GA_ID, {
-      debug_mode: false,
-      anonymize_ip: true,
-      allow_google_signals: true,
-      allow_ad_personalization_signals: false,
-    });
+    script.onload = () => {
+      console.log("Google Analytics script loaded via consent activation");
+    };
 
-    console.log("Google Analytics successfully initialized");
-  };
-
-  script.onerror = () => {
-    console.error("Failed to load Google Analytics script");
-  };
-  document.head.appendChild(script);
+    document.head.appendChild(script);
+    el.remove();
+  });
 };
 
 
