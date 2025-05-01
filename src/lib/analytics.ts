@@ -6,62 +6,61 @@ declare global {
   }
 }
 
-// Google Analytics initialization
+const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
+
 export const initGoogleAnalytics = () => {
-  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-  
-  if (!measurementId) {
-    console.warn('Google Analytics Measurement ID not found in environment variables');
+  // SSR safeguard
+  if (typeof window === "undefined" || typeof document === "undefined") {
+    console.warn("GA init skipped: window or document not available");
     return;
   }
 
-  // Initialize the dataLayer first
-  window.dataLayer = window.dataLayer || [];
-  function gtag(...args: unknown[]) {
-    window.dataLayer.push(args);
+  // Prevent multiple initializations
+  if (window.dataLayer) {
+    console.warn("GA already initialized, skipping duplicate setup");
+    return;
   }
-  
-  // Set up the gtag function
-  window.gtag = gtag;
 
-  // Configure gtag before loading the script
-  gtag('js', new Date());
-  gtag('config', measurementId, {
-    send_page_view: true,
-    debug_mode: false
-  });
+  // Prevent duplicate script tag
+  const existingScript = document.querySelector(
+    `script[src^="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"]`
+  );
+  if (existingScript) {
+    console.warn("GA script already present in DOM, not adding again");
+    return;
+  }
 
-  // Create and load the script
-  const script = document.createElement('script');
+  // Create GA script
+  const script = document.createElement("script");
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
   script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-  
-  // Add error handling for script loading
-  script.onerror = () => {
-    console.error('Failed to load Google Analytics script');
+
+  script.onload = () => {
+    // Setup dataLayer and gtag
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function (...args: unknown[]) {
+      window.dataLayer.push(args);
+    };
+
+    // Init gtag
+    window.gtag("js", new Date());
+    window.gtag("config", GA_ID, {
+      debug_mode: false,
+      anonymize_ip: true,
+      allow_google_signals: true,
+      allow_ad_personalization_signals: false,
+    });
+
+    console.log("Google Analytics successfully initialized");
   };
-  
-  // Append the script to the document
+
+  script.onerror = () => {
+    console.error("Failed to load Google Analytics script");
+  };
   document.head.appendChild(script);
-
-  // Debug logging
-  console.log('Google Analytics initialized with ID:', measurementId);
-
-  // Track initial page view
-  gtag('event', 'page_view', {
-    page_title: document.title,
-    page_location: window.location.href,
-    page_path: window.location.pathname
-  });
 };
 
-// Spotify embed initialization
-export const initSpotifyEmbed = () => {
-  console.log("Spotify embed initialized");
-};
 
-// Combined initialization function
 export const initConsentFeatures = () => {
   initGoogleAnalytics();
-  initSpotifyEmbed();
-}; 
+};

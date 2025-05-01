@@ -11,11 +11,13 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft, Calendar } from "lucide-react";
+import { COOKIE_KEY } from "@/components/CookieConsent";
 
 const spotifyAlbumId = import.meta.env.VITE_SPOTIFY_ALBUM_ID;
 
 const MusicPage = () => {
   const { t } = useTranslation();
+  const consent = localStorage.getItem(COOKIE_KEY);
 
   return (
     <Card variant="glass" size="large">
@@ -62,17 +64,18 @@ const MusicPage = () => {
             })}
           </div>
 
-          {/* Clear float and Spotify embed container */}
-          <div className="clear-both pt-8 w-full">
-            <iframe
-              src={`https://open.spotify.com/embed/album/${spotifyAlbumId}`}
-              width="100%"
-              height="380"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-              className="rounded-xl shadow-lg min-h-[380px]"
-            ></iframe>
-          </div>
+          {consent === "true" && (
+            <div className="clear-both pt-8 w-full">
+              <iframe
+                src={`https://open.spotify.com/embed/album/${spotifyAlbumId}`}
+                width="100%"
+                height="380"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                className="rounded-xl shadow-lg min-h-[380px]"
+              ></iframe>
+            </div>
+          )}
         </div>
       </CardContent>
 

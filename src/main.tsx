@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "next-themes";
 import "./lib/i18n.ts";
 import "./index.css";
-
 import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(

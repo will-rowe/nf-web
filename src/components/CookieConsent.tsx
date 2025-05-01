@@ -4,14 +4,13 @@ import { useTranslation } from "react-i18next";
 import { Cookie } from "lucide-react";
 import { initConsentFeatures } from "@/lib/analytics";
 
-const COOKIE_KEY = "nf_cookie_consent_v1";
+export const COOKIE_KEY = "nf_cookie_consent_v1";
 
 export default function CookieConsent() {
   const { t } = useTranslation();
 
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_KEY);
-
     if (consent === "true") {
       initConsentFeatures();
     } else {
