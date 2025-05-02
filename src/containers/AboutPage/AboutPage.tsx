@@ -24,8 +24,15 @@ const AboutPage = () => {
         <CardDescription>{t("aboutPage.description")}</CardDescription>
         <Separator />
       </CardHeader>
-      <CardContent>
-        <p>{t("aboutPage.content")}</p>
+      <CardContent className="flex-1 overflow-y-auto">
+        <div className="prose prose-stone dark:prose-invert max-w-none">
+          <img
+            src="/img/profile.png"
+            alt={t("musicPage.albumArtAlt")}
+            className="w-full md:w-42 md:float-left md:mr-8 mb-6 rounded-xl shadow-lg"
+          />
+          <p className="text-justify">{t("aboutPage.content")}</p>
+        </div>
       </CardContent>
       <Separator />
       <CardFooter>
