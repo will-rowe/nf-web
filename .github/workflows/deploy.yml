@@ -63,6 +63,10 @@ jobs:
           VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
           VITE_FORM_ID: ${{ secrets.VITE_FORM_ID }}
           VITE_SPOTIFY_ALBUM_ID: ${{ secrets.VITE_SPOTIFY_ALBUM_ID }}
+          VITE_SPOTIFY_ALBUM_URL: ${{ secrets.VITE_SPOTIFY_ALBUM_URL }}
+          VITE_APPLE_MUSIC_ALBUM_URL: ${{ secrets.VITE_APPLE_MUSIC_ALBUM_URL }}
+          VITE_YOUTUBE_ALBUM_URL: ${{ secrets.VITE_YOUTUBE_ALBUM_URL }}
+          VITE_AMAZON_MUSIC_ALBUM_URL: ${{ secrets.VITE_AMAZON_MUSIC_ALBUM_URL }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
