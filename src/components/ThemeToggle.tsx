@@ -1,6 +1,6 @@
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Sun, Moon } from "lucide-react";
+import { FaSun, FaMoon } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
@@ -20,9 +20,9 @@ export function ThemeToggle() {
       aria-label="Toggle theme"
     >
       {theme === "dark" ? (
-        <Sun className="w-5 h-5" />
+        <FaSun className="w-5 h-5" />
       ) : (
-        <Moon className="w-5 h-5" />
+        <FaMoon className="w-5 h-5" />
       )}
     </Button>
   );

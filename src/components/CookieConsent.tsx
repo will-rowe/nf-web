@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
-import { Cookie } from "lucide-react";
+import { FaCookieBite } from "react-icons/fa";
 import { initConsentFeatures } from "@/lib/analytics";
 
 export const COOKIE_KEY = "nf_cookie_consent_v1";
@@ -17,7 +17,7 @@ export default function CookieConsent() {
       toast(
         <div className="flex items-start gap-4">
           <div className="rounded-full bg-primary/10 p-2">
-            <Cookie className="h-5 w-5 text-primary" />
+            <FaCookieBite className="h-5 w-5 text-primary" />
           </div>
           <div className="space-y-1">
             <p className="text-sm text-muted-foreground">

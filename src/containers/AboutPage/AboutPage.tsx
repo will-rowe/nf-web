@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft } from "lucide-react";
+import { FaArrowLeft } from "react-icons/fa";
 
 const AboutPage = () => {
   const { t } = useTranslation();
@@ -38,7 +38,7 @@ const AboutPage = () => {
       <CardFooter>
         <Button variant="ghost" size="lg" asChild>
           <Link to="/">
-            <ArrowLeft />
+            <FaArrowLeft />
             {t("navigation.back")}
           </Link>
         </Button>
