@@ -19,6 +19,7 @@ const spotifyAlbumURL = import.meta.env.VITE_SPOTIFY_ALBUM_URL;
 const appleMusicAlbumURL = import.meta.env.VITE_APPLE_MUSIC_ALBUM_URL;
 const youtubeAlbumURL = import.meta.env.VITE_YOUTUBE_ALBUM_URL;
 const amazonMusicAlbumURL = import.meta.env.VITE_AMAZON_MUSIC_ALBUM_URL;
+
 const MusicPage = () => {
   const { t } = useTranslation();
   const consent = localStorage.getItem(COOKIE_KEY);
@@ -43,23 +44,17 @@ const MusicPage = () => {
 
       <CardContent className="flex-1 overflow-y-auto">
         <div className="prose prose-stone dark:prose-invert max-w-none">
-          {/* Album Artwork - floated left on larger screens */}
           <img
             src="/img/tf-album-art-1.png"
             alt={t("musicPage.albumArtAlt")}
             className="w-full md:w-96 md:float-left md:mr-8 mb-6 rounded-xl shadow-lg"
           />
-
-          {/* Album Content */}
           <div className="space-y-4 text-sm leading-relaxed">
-            {Array.from({ length: 5 }).map((_, i) => {
-              const key = `musicPage.content.paragraph${i + 1}`;
-              return (
-                <p key={key} className="text-justify">
-                  {t(key)}
-                </p>
-              );
-            })}
+            {Array.from({ length: 5 }).map((_, i) => (
+              <p key={`paragraph${i}`}>
+                {t(`musicPage.content.paragraph${i + 1}`)}
+              </p>
+            ))}
           </div>
 
           {consent === "true" && (
@@ -74,7 +69,21 @@ const MusicPage = () => {
               ></iframe>
             </div>
           )}
+
+          {/* Embedded YouTube Promo Video */}
+          <div className="clear-both pt-8 w-full flex justify-center">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/_smicMI7Z74"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-xl shadow-lg"
+            ></iframe>
+          </div>
         </div>
+
         <div className="clear-both pt-8 w-full flex justify-center">
           <SocialLinks
             spotifyUrl={spotifyAlbumURL}
