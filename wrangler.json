@@ -1,0 +1,11 @@
+{
+  "name": "nf-web",
+  "compatibility_date": "2026-04-21",
+  "workers_dev": true,
+  "build": {
+    "command": "npm run build"
+  },
+  "site": {
+    "bucket": "./dist"
+  }
+}

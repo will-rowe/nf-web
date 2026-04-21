@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy:workers": "npm run build",
+    "deploy:workers": "npx wrangler@latest publish --site ./dist",
+    "whoami:wrangler": "npx wrangler@latest whoami"
   },
   "dependencies": {
     "@fontsource/alegreya": "^5.2.5",
