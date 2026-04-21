@@ -38,12 +38,27 @@ const AnimatedDot = ({ x, r }: { x: number; r: number }) => {
     const shakeAmplitude = 5;
     const duration = 2000;
     const shakeFrequency = 80;
+    const frameSkip = 4; // lower effective FPS (~60/4 = ~15fps)
+    let frameCounter = 0;
 
     const animate = (timestamp: number) => {
+      // Pause updates when tab is hidden to save CPU
+      if (typeof document !== "undefined" && document.hidden) {
+        frame = requestAnimationFrame(animate);
+        return;
+      }
+
       if (startTimeRef.current === null) {
         startTimeRef.current = timestamp;
         nextStartTimeRef.current =
           timestamp + duration + Math.random() * duration;
+      }
+
+      frameCounter++;
+      // Skip frames to reduce work
+      if (frameCounter % frameSkip !== 0) {
+        frame = requestAnimationFrame(animate);
+        return;
       }
 
       const elapsed = timestamp - startTimeRef.current;
@@ -83,7 +98,8 @@ const AnimatedDot = ({ x, r }: { x: number; r: number }) => {
     return () => cancelAnimationFrame(frame);
   }, [x]);
 
-  return <circle ref={dotRef} r={r} />;
+  // Provide initial cx/cy to avoid layout thrash
+  return <circle ref={dotRef} r={r} cx={x} cy={1000} />;
 };
 
 export default BackgroundGraphic;

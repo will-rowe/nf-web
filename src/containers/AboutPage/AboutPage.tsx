@@ -30,6 +30,8 @@ const AboutPage = () => {
             src="/img/profile.png"
             alt={t("musicPage.albumArtAlt")}
             className="w-full md:w-42 md:float-left md:mr-8 mb-6 rounded-xl shadow-lg"
+            loading="lazy"
+            decoding="async"
           />
           <p className="text-justify">{t("aboutPage.content")}</p>
         </div>

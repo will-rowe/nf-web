@@ -48,6 +48,8 @@ const MusicPage = () => {
             src="/img/tf-album-art-1.png"
             alt={t("musicPage.albumArtAlt")}
             className="w-full md:w-96 md:float-left md:mr-8 mb-6 rounded-xl shadow-lg"
+            loading="lazy"
+            decoding="async"
           />
           <div className="space-y-4 text-sm leading-relaxed">
             {Array.from({ length: 5 }).map((_, i) => (
